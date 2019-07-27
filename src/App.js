@@ -31,23 +31,27 @@ export default () => {
   return (
     <div className="App">
       <h4 className="title">React-hooks-multi-select-checkbox</h4>
-      {renderCheckBox({allChecked,checkAllItems})}
-      {renderSelectedCheckbox({selectedCheckbox,setItemChecked})}
+      {renderCheckBox({ allChecked, checkAllItems })}
+      {renderSelectedCheckbox({ selectedCheckbox, setItemChecked })}
     </div>
   );
 };
 
-const renderCheckBox = ({allChecked,checkAllItems}) => (
-  <CheckBox
-      title={!allChecked ? "Check All" : "Uncheck All"}
-      checked={allChecked} onChange={() => checkAllItems(!allChecked)}
 
-      />
+
+const renderCheckBox = ({ allChecked, checkAllItems }) => (
+  <CheckBox
+    title={allChecked ? "Uncheck All" : "Check All"}
+    checked={allChecked}
+    onChange={() => checkAllItems(!allChecked)}
+  />
 );
-const renderSelectedCheckbox = ({selectedCheckbox,setItemChecked}) => (
-  selectedCheckbox.map(item => <CheckBox
-    key={item.id} title={item.title}
-    checked={item.isChecked}
-    onChange={() => setItemChecked(item.id, !item.isChecked)}
-     />
-));
+const renderSelectedCheckbox = ({ selectedCheckbox, setItemChecked }) => (
+  selectedCheckbox.map(item =>
+    <CheckBox
+      key={item.id}
+      title={item.title}
+      checked={item.isChecked}
+      onChange={() => setItemChecked(item.id, !item.isChecked)}
+    />
+  ));
