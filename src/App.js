@@ -7,6 +7,7 @@ export default () => {
 
   const [selectedCheckbox, setSelectedCheckbox] = useState(listCheckBox);
   const [allChecked, setAllChecked] = useState(false);
+
   const checkAllItems = (isChecked) => {
     setAllChecked(isChecked);
     setSelectedCheckbox(selectedCheckbox.map((item) => ({ ...item, isChecked })))
@@ -30,8 +31,23 @@ export default () => {
   return (
     <div className="App">
       <h4 className="title">React-hooks-multi-select-checkbox</h4>
-      <CheckBox title={!allChecked ? "Check All" : "Uncheck All"} checked={allChecked} onChange={() => checkAllItems(!allChecked)} />
-      {selectedCheckbox.map(item => <CheckBox key={item.id} title={item.title} checked={item.isChecked} onChange={() => setItemChecked(item.id, !item.isChecked)} />)}
+      {renderCheckBox({allChecked,checkAllItems})}
+      {renderSelectedCheckbox({selectedCheckbox,setItemChecked})}
     </div>
   );
-}
+};
+
+const renderCheckBox = ({allChecked,checkAllItems}) => (
+  <CheckBox
+      title={!allChecked ? "Check All" : "Uncheck All"}
+      checked={allChecked} onChange={() => checkAllItems(!allChecked)}
+
+      />
+);
+const renderSelectedCheckbox = ({selectedCheckbox,setItemChecked}) => (
+  selectedCheckbox.map(item => <CheckBox
+    key={item.id} title={item.title}
+    checked={item.isChecked}
+    onChange={() => setItemChecked(item.id, !item.isChecked)}
+     />
+));
