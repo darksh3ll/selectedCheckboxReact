@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import { listCheckBox } from './data'
 import CheckBox from './components/Checkbox'
-
 export default () => {
 
   const [selectedCheckbox, setSelectedCheckbox] = useState(listCheckBox);
@@ -36,8 +35,6 @@ export default () => {
     </div>
   );
 };
-
-
 
 const renderCheckBox = ({ allChecked, checkAllItems }) => (
   <CheckBox
